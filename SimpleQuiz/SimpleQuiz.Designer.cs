@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Name = "SimpleQuiz";
             this.Text = "SimpleQuiz";
+            this.Load += new System.EventHandler(this.SimpleQuiz_Load);
             this.ResumeLayout(false);
 
         }
