@@ -17,6 +17,7 @@ namespace SimpleQuiz
         const String problems_filename = "problems.txt";
 
         List<Problem> problems;
+        Problem last_problem;
 
         public SimpleQuiz()
         {
@@ -25,7 +26,31 @@ namespace SimpleQuiz
 
         private void SimpleQuiz_Load(object sender, EventArgs e)
         {
+            QuestionTextLabel.Text = "";
+            AnswerTextLabel.Text = "";
+
             Init();
+
+            bool s = NextProblem();
+
+            if (!s)
+            {
+                MessageBox.Show("Nincsenek feladatok. Kilépés.", "Info");
+                Close();
+            }
+        }
+
+        bool NextProblem()
+        {
+            if (problems.Count == 0) return false;
+
+            last_problem = problems[0];
+            problems.Remove(last_problem);
+
+            QuestionTextLabel.Text = last_problem.question;
+            AnswerTextLabel.Text = "";
+
+            return true;
         }
 
         void Init()
@@ -55,7 +80,7 @@ namespace SimpleQuiz
 
                 var init_problems = new List<Problem>();
                 init_problems.Add(new Problem("apple", "alma"));
-                init_problems.Add(new Problem("kerdes1", "valasz1"));
+                init_problems.Add(new Problem("peach", "barack"));
 
                 var problems_file_out = new System.IO.StreamWriter(problems_filename);
                 ser.WriteObject(problems_file_out.BaseStream, init_problems);
@@ -65,6 +90,29 @@ namespace SimpleQuiz
             }
 
             Console.WriteLine("Problems count: " + problems.Count.ToString() );
+
+            
+        }
+
+        private void ShowAnswerBtn_Click(object sender, EventArgs e)
+        {
+            ShowAnswerBtn.Enabled = false;
+            NextProblemBtn.Enabled = true;
+
+            AnswerTextLabel.Text = last_problem.answer;
+        }
+
+        private void NextProblemBtn_Click(object sender, EventArgs e)
+        {
+            ShowAnswerBtn.Enabled = true;
+            NextProblemBtn.Enabled = false;
+
+            bool s = NextProblem();
+            if (!s)
+            {
+                MessageBox.Show("Elfogytak a feladatok. Kilépés.", "Info");
+                Close();
+            }
         }
     }
 
@@ -78,9 +126,9 @@ namespace SimpleQuiz
         }
 
         [DataMember]
-        String question;
+        public String question;
 
         [DataMember]
-        String answer;
+        public String answer;
     }
 }
