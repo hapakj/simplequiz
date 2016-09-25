@@ -19,6 +19,8 @@ namespace SimpleQuiz
         List<Problem> problems;
         Problem last_problem;
 
+        Random rnd;
+
         public SimpleQuiz()
         {
             InitializeComponent();
@@ -30,6 +32,7 @@ namespace SimpleQuiz
             AnswerTextLabel.Text = "";
 
             Init();
+            rnd = new Random();
 
             bool s = NextProblem();
 
@@ -44,7 +47,8 @@ namespace SimpleQuiz
         {
             if (problems.Count == 0) return false;
 
-            last_problem = problems[0];
+            int i = rnd.Next(problems.Count);
+            last_problem = problems[i];
             problems.Remove(last_problem);
 
             QuestionTextLabel.Text = last_problem.question;
@@ -90,8 +94,6 @@ namespace SimpleQuiz
             }
 
             Console.WriteLine("Problems count: " + problems.Count.ToString() );
-
-            
         }
 
         private void ShowAnswerBtn_Click(object sender, EventArgs e)
