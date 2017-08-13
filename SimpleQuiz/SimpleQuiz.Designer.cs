@@ -36,6 +36,7 @@
             this.AnswerTextLabel = new System.Windows.Forms.Label();
             this.ShowAnswerBtn = new System.Windows.Forms.Button();
             this.NextProblemBtn = new System.Windows.Forms.Button();
+            this.ProblemCounter = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // QuestionLabel
@@ -119,11 +120,22 @@
             this.NextProblemBtn.UseVisualStyleBackColor = true;
             this.NextProblemBtn.Click += new System.EventHandler(this.NextProblemBtn_Click);
             // 
+            // ProblemCounter
+            // 
+            this.ProblemCounter.AutoSize = true;
+            this.ProblemCounter.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ProblemCounter.Location = new System.Drawing.Point(82, 23);
+            this.ProblemCounter.Name = "ProblemCounter";
+            this.ProblemCounter.Size = new System.Drawing.Size(64, 33);
+            this.ProblemCounter.TabIndex = 9;
+            this.ProblemCounter.Text = "n/m";
+            // 
             // SimpleQuiz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 334);
+            this.Controls.Add(this.ProblemCounter);
             this.Controls.Add(this.NextProblemBtn);
             this.Controls.Add(this.ShowAnswerBtn);
             this.Controls.Add(this.AnswerTextLabel);
@@ -150,6 +162,7 @@
         private System.Windows.Forms.Label AnswerTextLabel;
         private System.Windows.Forms.Button ShowAnswerBtn;
         private System.Windows.Forms.Button NextProblemBtn;
+        private System.Windows.Forms.Label ProblemCounter;
     }
 }
 

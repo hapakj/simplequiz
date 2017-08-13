@@ -18,6 +18,7 @@ namespace SimpleQuiz
 
         List<Problem> problems;
         Problem last_problem;
+        int problem_count;
 
         Random rnd;
 
@@ -45,6 +46,8 @@ namespace SimpleQuiz
 
         bool NextProblem()
         {
+            ProblemCounter.Text = (problem_count-problems.Count+1).ToString() + "/" + problem_count;
+
             if (problems.Count == 0) return false;
 
             int i = rnd.Next(problems.Count);
@@ -93,6 +96,7 @@ namespace SimpleQuiz
                 problems = init_problems;
             }
 
+            problem_count = problems.Count;
             Console.WriteLine("Problems count: " + problems.Count.ToString() );
         }
 
